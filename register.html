@@ -60,17 +60,23 @@
 
         });
 
+       
+
         userPool.signUp(email, password, [], null, function(err, result) {
 
             if (err) {
 
-                alert(err.message || JSON.stringify(err));
+                alert("Registration Error: " + (err.message || JSON.stringify(err)));
 
                 return;
 
             }
 
+           
+
             alert("Registration successful! Check your email for the verification code.");
+
+            localStorage.setItem("emailForVerification", email); // Store email for verify.html
 
             window.location.href = "verify.html";
 
