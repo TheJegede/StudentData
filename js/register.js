@@ -1,4 +1,6 @@
+console.log("before");
 document.addEventListener("DOMContentLoaded", function () {
+console.log("after");
     document.getElementById("registerForm").addEventListener("submit", function (event) {
         event.preventDefault();
 
