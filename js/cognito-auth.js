@@ -1,4 +1,4 @@
-/*global StudentData _config AmazonCognitoIdentity AWSCognito*/
+/*global StudentData, _config, AmazonCognitoIdentity */
 
 var StudentData = window.StudentData || {};
 
@@ -21,12 +21,11 @@ var StudentData = window.StudentData || {};
 
     userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
-    if (typeof AWSCognito !== 'undefined') {
-        AWSCognito.config.region = _config.cognito.region;
-    }
-
     StudentData.signOut = function signOut() {
-        userPool.getCurrentUser().signOut();
+        var cognitoUser = userPool.getCurrentUser();
+        if (cognitoUser) {
+            cognitoUser.signOut();
+        }
     };
 
     StudentData.authToken = new Promise(function fetchCurrentAuthToken(resolve, reject) {
@@ -47,21 +46,24 @@ var StudentData = window.StudentData || {};
         }
     });
 
-
     /*
-     * Cognito User Pool functions
+     * Cognito User Pool Registration Function
      */
-
     function register(email, password, onSuccess, onFailure) {
-        var dataEmail = {
+        var attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute({
             Name: 'email',
             Value: email
-        };
-        var attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(dataEmail);
+        });
 
-        userPool.signUp(toUsername(email), password, [attributeEmail], null,
-            function signUpCallback(err, result) {
-                if (!err) {
-                    onSuccess(result);
-                } else {
-}(jQuery));
+        userPool.signUp(email, password, [attributeEmail], null, function signUpCallback(err, result) {
+            if (!err) {
+                onSuccess(result);
+            } else {
+                onFailure(err);
+            }
+        });
+    }
+
+    StudentData.register = register;
+
+})(jQuery);
