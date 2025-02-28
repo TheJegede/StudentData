@@ -44,6 +44,20 @@
 
 <script>
 
+    document.addEventListener("DOMContentLoaded", function() {
+
+        const storedEmail = localStorage.getItem("emailForVerification");
+
+        if (storedEmail) {
+
+            document.getElementById("emailInputVerify").value = storedEmail;
+
+        }
+
+    });
+
+ 
+
     document.getElementById("verifyForm").addEventListener("submit", function(event) {
 
         event.preventDefault();
@@ -68,17 +82,21 @@
 
         });
 
+       
+
         cognitoUser.confirmRegistration(code, true, function(err, result) {
 
             if (err) {
 
-                alert(err.message || JSON.stringify(err));
+                alert("Verification Error: " + (err.message || JSON.stringify(err)));
 
                 return;
 
             }
 
             alert("Verification successful! You can now log in.");
+
+            localStorage.removeItem("emailForVerification"); // Clear stored email
 
             window.location.href = "index.html";
 
