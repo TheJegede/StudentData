@@ -12,7 +12,7 @@
 
     <title>Login</title>
 
-    <script src="js/config.js"></script>
+    <script src="config.js"></script>
 
     <script src=https://cdnjs.cloudflare.com/ajax/libs/amazon-cognito-identity-js/5.2.7/amazon-cognito-identity.min.js></script>
 
@@ -130,15 +130,65 @@
 
 </html>
 
- 
-
 <script>
 
     document.getElementById("loginForm").addEventListener("submit", function(event) {
 
         event.preventDefault();
 
-        alert("Implement Cognito login here");
+        const email = document.getElementById("emailLogin").value;
+
+        const password = document.getElementById("passwordLogin").value;
+
+ 
+
+        const authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
+
+            Username: email,
+
+            Password: password,
+
+        });
+
+ 
+
+        const userPool = new AmazonCognitoIdentity.CognitoUserPool({
+
+            UserPoolId: cognitoConfig.userPoolId,
+
+            ClientId: cognitoConfig.clientId
+
+        });
+
+ 
+
+        const cognitoUser = new AmazonCognitoIdentity.CognitoUser({
+
+            Username: email,
+
+            Pool: userPool
+
+        });
+
+ 
+
+        cognitoUser.authenticateUser(authenticationDetails, {
+
+            onSuccess: function(result) {
+
+                alert("Login successful!");
+
+                window.location.href = "dashboard.html";
+
+            },
+
+            onFailure: function(err) {
+
+                alert(err.message || JSON.stringify(err));
+
+            }
+
+        });
 
     });
 
