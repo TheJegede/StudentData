@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 console.log("after");
     document.getElementById("registerForm").addEventListener("submit", function (event) {
         event.preventDefault();
-
+console.log("submitted");
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
 
