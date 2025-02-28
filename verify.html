@@ -16,82 +16,6 @@
 
     <script src=https://cdnjs.cloudflare.com/ajax/libs/amazon-cognito-identity-js/5.2.7/amazon-cognito-identity.min.js></script>
 
-    <style>
-
-        body {
-
-            background-color: #f8f9fa;
-
-            font-family: Arial, sans-serif;
-
-            text-align: center;
-
-            padding: 50px;
-
-        }
-
-        .container {
-
-            max-width: 400px;
-
-            margin: auto;
-
-            padding: 20px;
-
-            background-color: white;
-
-            border-radius: 10px;
-
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
-        }
-
-        h1 {
-
-            color: #ffc107;
-
-        }
-
-        input {
-
-            width: 100%;
-
-            padding: 10px;
-
-            margin: 10px 0;
-
-            border: 1px solid #ccc;
-
-            border-radius: 5px;
-
-        }
-
-        .btn {
-
-            width: 100%;
-
-            padding: 10px;
-
-            background-color: #ffc107;
-
-            color: white;
-
-            border: none;
-
-            border-radius: 5px;
-
-            cursor: pointer;
-
-        }
-
-        .btn:hover {
-
-            opacity: 0.8;
-
-        }
-
-    </style>
-
 </head>
 
 <body>
@@ -124,7 +48,41 @@
 
         event.preventDefault();
 
-        alert("Implement Cognito verification here");
+        const email = document.getElementById("emailInputVerify").value;
+
+        const code = document.getElementById("codeInputVerify").value;
+
+        const userPool = new AmazonCognitoIdentity.CognitoUserPool({
+
+            UserPoolId: cognitoConfig.userPoolId,
+
+            ClientId: cognitoConfig.clientId
+
+        });
+
+        const cognitoUser = new AmazonCognitoIdentity.CognitoUser({
+
+            Username: email,
+
+            Pool: userPool
+
+        });
+
+        cognitoUser.confirmRegistration(code, true, function(err, result) {
+
+            if (err) {
+
+                alert(err.message || JSON.stringify(err));
+
+                return;
+
+            }
+
+            alert("Verification successful! You can now log in.");
+
+            window.location.href = "index.html";
+
+        });
 
     });
 
