@@ -12,6 +12,10 @@
 
     <title>Verify Account</title>
 
+    <script src="js/config.js"></script>
+
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/amazon-cognito-identity-js/5.2.7/amazon-cognito-identity.min.js></script>
+
     <style>
 
         body {
@@ -98,18 +102,30 @@
 
         <p>Enter the verification code sent to your email.</p>
 
-        <form action="index.html">
+        <form id="verifyForm">
 
-            <input type="email" placeholder="Email" required>
+            <input type="email" id="emailInputVerify" placeholder="Email" required>
 
-            <input type="text" placeholder="Verification Code" required>
+            <input type="text" id="codeInputVerify" placeholder="Verification Code" required>
 
             <button type="submit" class="btn">Verify</button>
 
         </form>
 
     </div>
-    <script src="js/config.js"></script>
+
 </body>
 
 </html>
+
+<script>
+
+    document.getElementById("verifyForm").addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        alert("Implement Cognito verification here");
+
+    });
+
+</script>
