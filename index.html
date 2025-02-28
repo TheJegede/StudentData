@@ -1,121 +1,127 @@
-<!DOCTYPE html> 
+<!-- index.html (Login Page with Register Option) -->
 
-<html lang="en"> 
+<!DOCTYPE html>
 
-<head> 
+<html lang="en">
 
-    <meta charset="UTF-8"> 
+<head>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta charset="UTF-8">
 
-    <title>Welcome to Student Portal</title> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style> 
+    <title>Login</title>
 
-        body { 
+    <style>
 
-            background-color: #f8f9fa; 
+        body {
 
-            font-family: Arial, sans-serif; 
+            background-color: #f8f9fa;
 
-            text-align: center; 
+            font-family: Arial, sans-serif;
 
-            padding: 50px; 
+            text-align: center;
 
-        } 
+            padding: 50px;
 
-        .container { 
+        }
 
-            max-width: 500px; 
+        .container {
 
-            margin: auto; 
+            max-width: 400px;
 
-            padding: 20px; 
+            margin: auto;
 
-            background-color: white; 
+            padding: 20px;
 
-            border-radius: 10px; 
+            background-color: white;
 
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+            border-radius: 10px;
 
-        } 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
-        h1 { 
+        }
 
-            color: #007bff; 
+        h1 {
 
-        } 
+            color: #007bff;
 
-        .button-container { 
+        }
 
-            margin-top: 20px; 
+        input {
 
-        } 
+            width: 100%;
 
-        .btn { 
+            padding: 10px;
 
-            display: block; 
+            margin: 10px 0;
 
-            width: 100%; 
+            border: 1px solid #ccc;
 
-            padding: 10px; 
+            border-radius: 5px;
 
-            margin: 10px 0; 
+        }
 
-            border: none; 
+        .btn {
 
-            border-radius: 5px; 
+            width: 100%;
 
-            font-size: 16px; 
+            padding: 10px;
 
-            cursor: pointer; 
+            background-color: #007bff;
 
-            text-decoration: none; 
+            color: white;
 
-            color: white; 
+            border: none;
 
-        } 
+            border-radius: 5px;
 
-        .register-btn { 
+            cursor: pointer;
 
-            background-color: #28a745; 
+        }
 
-        } 
+        .btn:hover {
 
-        .login-btn { 
+            opacity: 0.8;
 
-            background-color: #007bff; 
+        }
 
-        } 
+        .register-link {
 
-        .btn:hover { 
+            margin-top: 20px;
 
-            opacity: 0.8; 
+            font-size: 14px;
 
-        } 
+        }
 
-    </style> 
+    </style>
 
-</head> 
+</head>
 
-<body> 
+<body>
 
-    <div class="container"> 
+    <div class="container">
 
-        <h1>Welcome to Student Portal</h1> 
+        <h1>Login</h1>
 
-        <p>Manage your student records efficiently.</p> 
+        <form action="dashboard.html">
 
-        <div class="button-container"> 
+            <input type="email" placeholder="Email" required>
 
-            <a href="register.html" class="btn register-btn">Register</a> 
+            <input type="password" placeholder="Password" required>
 
-            <a href="login.html" class="btn login-btn">Login</a> 
+            <button type="submit" class="btn">Login</button>
 
-        </div> 
+        </form>
 
-    </div> 
+        <div class="register-link">
 
-</body> 
+            <p>Don't have an account? <a href="register.html">Register here</a></p>
 
-</html> 
+        </div>
+
+    </div>
+
+</body>
+
+</html>
